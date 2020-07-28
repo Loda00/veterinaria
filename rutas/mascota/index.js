@@ -43,7 +43,7 @@ app.post('/mascota', async (req, res) => {
 
   try {
     const reply = await con.query(`
-      INSERT INTO duenio (NOMBRE, ID_DUENIO, RAZA, TIPO) VALUES
+      INSERT INTO mascota (NOMBRE, ID_DUENIO, RAZA, TIPO) VALUES
       ('${nombre}', '${idDuenio}', '${raza}', '${tipo}');`)
     res.json({
       reply: reply.rows,
