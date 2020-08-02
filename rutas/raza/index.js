@@ -20,4 +20,22 @@ app.get('/raza', async (req, res) => {
   }
 })
 
+app.post('/raza', async (req, res) => {
+
+  const { raza } = req.body
+  const con = await pool.connect()
+
+  try {
+    const reply = await con.query(`INSERT INTO razaMascota (DESCRIPTION) values (${raza});`)
+
+    res.json({
+      reply: reply.rows,
+    })
+  } catch (error) {
+    throw new Error(error)
+  } finally {
+    con.release()
+  }
+})
+
 module.exports = app

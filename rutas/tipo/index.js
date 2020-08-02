@@ -20,4 +20,22 @@ app.get('/tipo', async (req, res) => {
   }
 })
 
+app.post('/tipo', async (req, res) => {
+
+  const { tipo } = req.body
+  const con = await pool.connect()
+
+  try {
+    const reply = await con.query(`INSERT INTO tipoMascota (DESCRIPTION) values (${tipo});`)
+
+    res.json({
+      reply: reply.rows,
+    })
+  } catch (error) {
+    throw new Error(error)
+  } finally {
+    con.release()
+  }
+})
+
 module.exports = app
