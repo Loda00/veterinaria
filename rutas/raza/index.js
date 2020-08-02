@@ -26,7 +26,43 @@ app.post('/raza', async (req, res) => {
   const con = await pool.connect()
 
   try {
-    const reply = await con.query(`INSERT INTO razaMascota (DESCRIPTION) values (${raza});`)
+    const reply = await con.query(`INSERT INTO razaMascota (DESCRIPTION) values ('${raza}');`)
+
+    res.json({
+      reply: reply.rows,
+    })
+  } catch (error) {
+    throw new Error(error)
+  } finally {
+    con.release()
+  }
+})
+
+app.put('/raza', async (req, res) => {
+
+  const { raza, idRaza } = req.body
+  const con = await pool.connect()
+
+  try {
+    const reply = await con.query(`UPDATE razaMascota SET DESCRIPTION = ('${raza}') WHERE ID_RAZA = ${idRaza};`)
+
+    res.json({
+      reply: reply.rows,
+    })
+  } catch (error) {
+    throw new Error(error)
+  } finally {
+    con.release()
+  }
+})
+
+app.delete('/raza', async (req, res) => {
+
+  const { idRaza } = req.body
+  const con = await pool.connect()
+
+  try {
+    const reply = await con.query(`DELETE FROM razaMascota WHERE ID_RAZA = ${idRaza};`)
 
     res.json({
       reply: reply.rows,
