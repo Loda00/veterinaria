@@ -56,13 +56,13 @@ app.put('/estado', async (req, res) => {
   }
 })
 
-app.delete('/estado', async (req, res) => {
+app.delete('/estado/:id', async (req, res) => {
 
-  const { idEstado } = req.body
+  const { id } = req.params
   const con = await pool.connect()
 
   try {
-    const reply = await con.query(`DELETE FROM estado WHERE ID_ESTADO = ${idEstado};`)
+    const reply = await con.query(`DELETE FROM estado WHERE ID_ESTADO = ${id};`)
 
     res.json({
       reply: reply.rows,
