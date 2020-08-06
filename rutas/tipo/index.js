@@ -56,13 +56,13 @@ app.put('/tipo', async (req, res) => {
   }
 })
 
-app.delete('/tipo', async (req, res) => {
+app.delete('/tipo/:id', async (req, res) => {
 
-  const { idTipo } = req.body
+  const { id } = req.params
   const con = await pool.connect()
 
   try {
-    const reply = await con.query(`DELETE FROM tipoMascota WHERE ID_TIPO = ${idTipo};`)
+    const reply = await con.query(`DELETE FROM tipoMascota WHERE ID_TIPO = ${id};`)
 
     res.json({
       reply: reply.rows,
