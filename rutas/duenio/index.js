@@ -4,6 +4,23 @@ const { mailer } = require('../../utils/mailer')
 
 const app = express()
 
+app.get('/duenio', async (req, res) => {
+
+  const con = await pool.connect()
+
+  try {
+    const reply = await con.query(`SELECT * FROM duenio;`)
+    res.json({
+      reply: reply.rows,
+      rowCount: reply.rowCount,
+    })
+  } catch (error) {
+    throw new Error(error)
+  } finally {
+    con.release()
+  }
+})
+
 app.get('/duenio/:id', async (req, res) => {
 
   const con = await pool.connect()
