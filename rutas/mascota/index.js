@@ -39,12 +39,12 @@ app.get('/mascota/:id', async (req, res) => {
 
 app.post('/mascota', async (req, res) => {
   const { nombre, idDuenio, raza, tipo } = req.body
+
   const con = await pool.connect()
+  const query = `INSERT INTO mascota (NOMBRE, ID_DUENIO, RAZA, TIPO) VALUES ('${nombre}', ${idDuenio}, ${raza}, ${tipo});`
 
   try {
-    const reply = await con.query(`
-      INSERT INTO mascota (NOMBRE, ID_DUENIO, RAZA, TIPO) VALUES
-      ('${nombre}', '${idDuenio}', '${raza}', '${tipo}');`)
+    const reply = await con.query(query)
     res.json({
       reply: reply.rows,
       rowCount: reply.rowCount,
