@@ -54,7 +54,7 @@ const signup = (email, nombre) => {
     text-decoration: none; border-radius: 3px;}</style><body><div style="height: 600px;">
     <div class="wrapper"> <div class="wrapper-header"><div class="wrapper-icon">
     <img class="icon" src="https://img.icons8.com/plasticine/344/smiling.png" alt="happy" />
-    </div></div><div class="wrapper-body"><h3>Bienvenido a Veterinaria, ${nombre}</h3>
+    </div></div><div class="wrapper-body"><h3>Correo enviado, ${nombre}</h3>
     <p>Nombre: ${nombre}</p> <p>Correo: ${email}</p> <p>Fecha: ${moment().format('DD-MM-YYYY')}</p>
     <p>Hora: ${moment().format('HH:mm:ss')}</p><a href="#">Validar correo</a>
     <div style="margin-top: 30px;">Location: PE</div> <div>Derechos reservados.</div>
