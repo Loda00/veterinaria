@@ -7,7 +7,8 @@ app.use(
   require('./estado'),
   require('./doctor'),
   require('./duenio'),
-  require('./mascota')
+  require('./mascota'),
+  require('./contacto')
 )
 
 module.exports = app

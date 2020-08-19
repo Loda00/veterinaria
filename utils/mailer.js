@@ -14,10 +14,10 @@ const mailer = async (email) => {
   const mailOptions = {
     from: process.env.GMAIL,
     to: email,
-    subject: 'Registro de cuenta Veterinaria',
+    subject: 'Petición de contacto',
     html: signup(email, email.split('@')[0])
   }
-  console.log('process.env', process.env.GMAIL, process.env.PASSWORD_GMAIL)
+
   try {
     const result = await transporter.sendMail(mailOptions)
     return result
@@ -27,6 +27,12 @@ const mailer = async (email) => {
   }
 
 }
+
+// https://myaccount.google.com/lesssecureapps?pli=1
+
+// https://accounts.google.com/b/0/displayunlockcaptcha
+// https://www.google.com/settings/security/lesssecureapps
+// https://g.co/allowaccess
 
 module.exports = {
   mailer
@@ -50,8 +56,11 @@ const signup = (email, nombre) => {
     <img class="icon" src="https://img.icons8.com/plasticine/344/smiling.png" alt="happy" />
     </div></div><div class="wrapper-body"><h3>Bienvenido a Veterinaria, ${nombre}</h3>
     <p>Nombre: ${nombre}</p> <p>Correo: ${email}</p> <p>Fecha: ${moment().format('DD-MM-YYYY')}</p>
-    <p>Hora: ${moment().format('HH:mm:ss')}</p><p style="margin-bottom: 30px;">Para culminar tu
-    registro, valida tu correo eletrónico</p> <a href="#">Validar correo</a>
+    <p>Hora: ${moment().format('HH:mm:ss')}</p><a href="#">Validar correo</a>
     <div style="margin-top: 30px;">Location: PE</div> <div>Derechos reservados.</div>
     </div> </div></div></body></html>`
 }
+
+
+{/* <p style="margin-bottom: 30px;">Para culminar tu
+    registro, valida tu correo eletrónico</p> */}
