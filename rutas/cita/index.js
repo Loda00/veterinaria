@@ -9,10 +9,11 @@ app.get('/cita', async (req, res) => {
 
   try {
 
-    await con.query('select * from cita WHERE fecha_salida IS NULL;')
+    const reply = await con.query('select * from cita WHERE fecha_salida IS NULL;')
 
     res.json({
-      reply: 'enviado'
+      reply: reply.rows,
+      rowCount: reply.rowCount,
     })
 
   } catch (e) {
