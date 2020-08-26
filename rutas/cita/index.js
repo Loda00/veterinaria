@@ -9,7 +9,14 @@ app.get('/cita', async (req, res) => {
 
   try {
 
-    const reply = await con.query('select * from cita WHERE fecha_salida IS NULL;')
+    const reply = await con.query(`SELECT c.*, d.NOMBRES_APELLIDOS as NOMBRE_DUENIO, 
+      m.NOMBRE as NOMBRE_MASCOTA, doc.NOMBRES_APELLIDOS as NOMBRE_DOCTOR,
+      e.DESCRIPTION as estado 
+      FROM cita c INNER JOIN duenio d ON 
+      c.id_duenio = d.id_duenio INNER JOIN mascota m ON
+      c.id_mascota = m.id_mascota INNER JOIN doctor doc ON
+      c.id_doctor = doc.id_doctor INNER JOIN estado e ON
+      c.id_estado = e.id_estado WHERE fecha_salida IS NULL;`)
 
     res.json({
       reply: reply.rows,
