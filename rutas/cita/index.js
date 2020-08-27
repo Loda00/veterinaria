@@ -54,15 +54,14 @@ app.post('/cita', async (req, res) => {
 
 app.put('/cita', async (req, res) => {
 
-  const { idCita, idDuenio, idDoctor, observaciones, idEstado, fechaSalida, horaSalida } = req.body
+  const { idCita, idDoctor, observaciones, idEstado, fechaSalida, horaSalida } = req.body
 
   const con = await pool.connect()
 
   try {
 
     await con.query(`UPDATE cita
-                      SET ID_DUENIO = ${idDuenio},
-                          ID_DOCTOR = ${idDoctor}, 
+                      SET ID_DOCTOR = ${idDoctor}, 
                           OBSERVACIONES = ${observaciones}, 
                           FECHA_SALIDA = ${fechaSalida || null}, 
                           HORA_SALIDA = ${horaSalida || null}, 
