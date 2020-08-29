@@ -47,7 +47,7 @@ app.post('/duenio', async (req, res) => {
     console.log('req.body', req.body)
     const reply = await con.query(`
       INSERT INTO duenio (NOMBRES_APELLIDOS, EMAIL, DNI, TELEFONO, DIRECCION) VALUES
-      (${nombresApellidos}, '${email}', '${dni}', '${telefono}', '${direccion}');`)
+      ('${nombresApellidos}', '${email}', '${dni}', '${telefono}', '${direccion}');`)
 
 
     // if (reply.rows[0].fn_add_user === ID_NOT_CREATED) {
