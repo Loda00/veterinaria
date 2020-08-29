@@ -62,12 +62,13 @@ app.put('/cita', async (req, res) => {
 
     await con.query(`UPDATE cita
                       SET ID_DOCTOR = ${idDoctor}, 
-                          OBSERVACIONES = ${observaciones}, 
-                          FECHA_SALIDA = ${fechaSalida || null}, 
-                          HORA_SALIDA = ${horaSalida || null}, 
-                          ID_ESTADO = ${idEstado},
+                          OBSERVACIONES = '${observaciones}',
+                          ${fechaSalida && horaSalida ? 
+                            `FECHA_SALIDA = '${fechaSalida || ''}', 
+                            HORA_SALIDA = '${horaSalida || ''}', ` : ''}
+                            ID_ESTADO = ${idEstado}
                       WHERE ID_CITA = ${idCita};
-                    `)
+                      `)
 
     res.json({
       reply: 'actualizado'
