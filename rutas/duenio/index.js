@@ -41,9 +41,10 @@ app.get('/duenio/:id', async (req, res) => {
 app.post('/duenio', async (req, res) => {
   const { nombresApellidos, email, dni, telefono, direccion } = req.body
   const con = await pool.connect()
-
+  
   try {
     await con.query('BEGIN')
+    console.log('req.body', req.body)
     const reply = await con.query(`
       INSERT INTO duenio (NOMBRES_APELLIDOS, EMAIL, DNI, TELEFONO, DIRECCION) VALUES
       ('${nombresApellidos}', '${email}', '${dni}', '${telefono}', '${direccion}');`)
