@@ -5,7 +5,7 @@ require('dotenv').config()
 
 const app = express()
 
-const APP_PORT = process.env.PORT || 3000;
+const APP_PORT = process.env.PORT || 8080;
 
 app.use(morgan('dev'))
 app.use(express.json())
@@ -16,7 +16,7 @@ app.use(cors())
 app.use('/api/v1', require('./rutas'))
 
 
-app.listen(8080, () => {
+app.listen(APP_PORT, () => {
   console.log(`Server listening on port ${APP_PORT}`)
   console.log(`Server running => http://localhost:${APP_PORT}/api/v1/`)
 })
