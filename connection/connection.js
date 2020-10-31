@@ -1,13 +1,11 @@
 const { Pool } = require('pg')
 
-const { DB_USER, DB_HOST, DB_NAME, DB_PASSWORD, DB_PORT } = process.env
-
 const pool = new Pool({
-  user: DB_USER,
-  host: DB_HOST,
-  database: DB_NAME,
-  password: DB_PASSWORD,
-  port: DB_PORT,
+  user: 'u374kyk1mhixy8ukjhdr',
+  host: 'bpmzolmdt2u4jjzakhlr-postgresql.services.clever-cloud.com',
+  database: 'bpmzolmdt2u4jjzakhlr',
+  password: 'QOOAiZfmBevwMpGT5b35',
+  port: 5432,
 })
 
 module.exports = {
